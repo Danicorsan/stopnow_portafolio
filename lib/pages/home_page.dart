@@ -6,33 +6,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('StopNow - Deja de fumar', style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/features');
-            },
-            child: const Text(
-              'Características',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/contact');
-            },
-            child: const Text(
-              'Contacto',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-      ),
+      
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 16.0, top: 0, left: 16, right: 16),
@@ -62,15 +36,18 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               _buildFeaturesSection(context),
+              Footer(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const Footer(),
     );
   }
 
   Widget _buildFeaturesSection(BuildContext context) {
+
+    final bool isMobile = MediaQuery.of(context).size.width < 600;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -79,6 +56,31 @@ class HomePage extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
+        isMobile ? SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: [
+              _featureCard(
+                icon: Icons.timer,
+                title: 'Deja de fumar más rápido',
+                description:
+                    'Reduce tus ganas de fumar con ayuda de nuestra app, diseñada para acelerar el proceso.',
+              ),
+              _featureCard(
+                icon: Icons.health_and_safety,
+                title: 'Mejora tu salud',
+                description:
+                    'Recibe alertas y estadísticas de cómo tu salud mejora cada día que no fumes.',
+              ),
+              _featureCard(
+                icon: Icons.assessment,
+                title: 'Monitorea tu progreso',
+                description:
+                    'Sigue tu progreso y recibe motivación diaria para mantenerte alejado del cigarro.',
+              ),
+            ],
+          ),
+        ) :
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -134,7 +136,12 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color.fromARGB(255, 0, 33, 64), width: 2),
       color: const Color(0xFF0A74DA),
+      borderRadius: BorderRadius.circular(10),
+      ),
+      width: double.infinity,
       padding: const EdgeInsets.all(10),
       child: const Text(
         '© 2025 StopNow | Todos los derechos reservados',
