@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               _buildFeaturesSection(context),
-              Footer(),
+              const Footer(),
             ],
           ),
         ),
