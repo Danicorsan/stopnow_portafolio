@@ -53,21 +53,21 @@ class _MainScaffoldState extends State<MainScaffold> {
         actions: [
           TextButton(
             style: _currentIndex == 0
-                ? TextButton.styleFrom(backgroundColor: const Color(0xFF0A74DA))
+                ? TextButton.styleFrom(backgroundColor: const Color.fromARGB(255, 255, 255, 255))
                 : null,
             onPressed: () => _changeScreen(0),
             child: const Text('Inicio', style: TextStyle(color: Colors.white)),
           ),
           TextButton(
             style: _currentIndex == 1
-                ? TextButton.styleFrom(backgroundColor: const Color(0xFF0A74DA))
+                ? TextButton.styleFrom(backgroundColor: const Color.fromARGB(255, 255, 255, 255))
                 : null,
             onPressed: () => _changeScreen(1),
             child: const Text('Feature', style: TextStyle(color: Colors.white)),
           ),
           TextButton(
             style: _currentIndex == 2
-                ? TextButton.styleFrom(backgroundColor: const Color(0xFF0A74DA))
+                ? TextButton.styleFrom(backgroundColor: const Color.fromARGB(255, 255, 255, 255))
                 : null,
             onPressed: () => _changeScreen(2),
             child: const Text('Contacto', style: TextStyle(color: Colors.white)),
