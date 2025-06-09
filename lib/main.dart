@@ -1,39 +1,117 @@
 import 'package:flutter/material.dart';
-import 'package:stopnow_portafolio/example.dart';
-import 'package:stopnow_portafolio/pages/contact_page.dart';
-import 'package:stopnow_portafolio/pages/feature_page.dart';
-import 'package:stopnow_portafolio/pages/home_page.dart';
+import 'dart:html' as html;
 
 void main() {
-  runApp(const MyApp());
+  runApp(const StopNowWebApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StopNowWebApp extends StatelessWidget {
+  const StopNowWebApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'StopNow - Deja de fumar',
+      title: 'StopNow',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFF0A74DA), // Azul principal
-        hintColor: const Color(0xFF3B8D99), // Azul secundario
+        primaryColor: const Color(0xFF153866),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF153866),
+          primary: const Color(0xFF153866),
+          secondary: const Color(0xFF608AAE),
+        ),
         scaffoldBackgroundColor: Colors.white,
-        textTheme: const TextTheme(bodyMedium: TextStyle(color: Colors.black, fontSize: 16)),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF0A74DA),
-          elevation: 0,
+        fontFamily: 'Montserrat',
+      ),
+      home: const DownloadPage(),
+    );
+  }
+}
+
+class DownloadPage extends StatelessWidget {
+  const DownloadPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Cambia estos enlaces por los reales de tu app
+    const apkUrl = 'https://youtube.com';
+
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Card(
+            elevation: 8,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // LOGO
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      'assets/logo.png',
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'StopNow',
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '¡Descarga la app y deja de fumar!',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  OutlinedButton.icon(
+                    icon: const Icon(Icons.download),
+                    label: const Text('Descargar APK'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF153866),
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size(220, 48),
+                    ),
+                    onPressed: () {
+                      _launchUrl(apkUrl);
+                    },
+                  ),
+                  const SizedBox(height: 32),
+                  Text(
+                    'Daniel Cortés Sánchez - 2025',
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 13,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
-      /*
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/features': (context) => const FeaturesPage(),
-        '/contact': (context) => const ContactPage(),
-      },
-      */
-      home: const MainScaffold(),
     );
+  }
+
+  void _launchUrl(String url) {
+    // ignore: undefined_prefixed_name
+    // Solo funciona en web
+    // ignore: avoid_web_libraries_in_flutter
+
+    html.window.open(url, '_blank');
   }
 }
