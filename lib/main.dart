@@ -34,7 +34,8 @@ class DownloadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Cambia estos enlaces por los reales de tu app
-    const apkUrl = 'https://youtube.com';
+    const apkUrl =
+        'https://drive.google.com/file/d/1dMxpoRLiARQxqzbw3UBVg_sMs1mHCMf6/view?usp=sharing';
 
     return Scaffold(
       body: Center(
@@ -72,6 +73,7 @@ class DownloadPage extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     '¡Descarga la app y deja de fumar!',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
                       color: Theme.of(context).colorScheme.secondary,
