@@ -1,11 +1,11 @@
 {
-    "name": "stopnow_portafolio",
-    "short_name": "stopnow_portafolio",
+    "name": "StopNow",
+    "short_name": "StopNow",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "¡Descarga StopNow y deja de fumar!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
